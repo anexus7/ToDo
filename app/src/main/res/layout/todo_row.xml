@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/row_background_selector"
+    android:padding="20dp"
+    android:orientation="horizontal">
+    <ImageView
+        android:id="@+id/todo_row_dropimageview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:scaleY="0.75"
+        android:scaleX="0.75"
+        android:src="@drawable/ic_drop"/>
+    <TextView
+        android:id="@+id/todo_row_whattextview"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_marginStart="10dp"
+        android:layout_height="wrap_content"
+        android:textSize="30sp"
+        android:text="@string/todo_row_what_text"
+        />
+    <TextView
+        android:id="@+id/todo_row_whentextview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="30sp"
+        android:layout_marginEnd="10dp"
+        android:text="@string/todo_row_when_text"
+        />
+
+</LinearLayout>

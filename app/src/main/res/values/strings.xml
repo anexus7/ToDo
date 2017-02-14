@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">ToDo</string>
     <string name="logo_button_text">Add a ToDo</string>
+    <string name="add_a_drop_dialog_text">Add a Drop</string>
+    <string name="title_hint">What is It?</string>
+    <string name="dialog_addit_button_text">Add ToDo</string>
+    <string name="todo_row_what_text">What</string>
+    <string name="todo_row_when_text">When</string>
 </resources>
