@@ -7,23 +7,25 @@
     android:layout_height="match_parent"
     tools:context="com.greatapps.jatinthareja.todo.MainActivity">
 
-    <include
-        android:id="@+id/toolbar"
-        layout="@layout/toolbar" />
-
     <ImageView
         android:id="@+id/bg_imageview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/toolbar" />
-    <android.support.v7.widget.RecyclerView
+         />
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar" />
+
+
+    <com.greatapps.jatinthareja.todo.recyler_setup.TodoRecyclerView
         android:layout_below="@+id/toolbar"
         android:id="@+id/recyler_list"
-        app:layoutManager="android.support.v7.widget.LinearLayoutManager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 
-    <include layout="@layout/startup_activity" />
+    <include
+        android:id="@+id/empty_activity"
+        layout="@layout/startup_activity" />
 
 
 </RelativeLayout>

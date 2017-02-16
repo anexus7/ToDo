@@ -6,47 +6,109 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.greatapps.jatinthareja.todo.Interfaces.ButtonListener;
+import com.greatapps.jatinthareja.todo.Interfaces.ClickListerner;
+import com.greatapps.jatinthareja.todo.Interfaces.SwipeListerner;
 import com.greatapps.jatinthareja.todo.R;
 import com.greatapps.jatinthareja.todo.ToDo;
 
+import io.realm.Realm;
 import io.realm.RealmResults;
 
 /**
  * Created by JatinThareja on 13-Feb-17.
  */
 
-public class TodoAdapter extends RecyclerView.Adapter<TodoHolder>{
+public class TodoAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements SwipeListerner {
+    static final int ITEM = 0;
+    private static final int HEADER = 1;
     private LayoutInflater minflater;
     private RealmResults<ToDo> mResults;
+    private ButtonListener buttonListener;
+    private Realm mRealm;
+    private ClickListerner clickListerner;
 
 
-    public TodoAdapter(Context context,RealmResults<ToDo> data) {
-        minflater=LayoutInflater.from(context);
-        update(data);
+    public TodoAdapter(Context context, RealmResults<ToDo> data, Realm realm, ClickListerner clickListerner) {
+        mRealm = realm;
+        minflater = LayoutInflater.from(context);
+        mResults = data;
+        notifyDataSetChanged();
+        this.clickListerner = clickListerner;
+
+
+    }
+
+    public void setAddlistener(ButtonListener listerner) {
+        buttonListener = listerner;
+    }
+
+
+    @Override
+    public int getItemViewType(int position) {
+        if (position < mResults.size()) {
+            return ITEM;
+        } else {
+            return HEADER;
+        }
 
     }
 
     @Override
-    public TodoHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v=minflater.inflate(R.layout.todo_row,parent,false);
-        return new TodoHolder(v);
+    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View v;
+        if (viewType == HEADER) {
+            v = minflater.inflate(R.layout.footer_button, parent, false);
+            return new FooterHolder(v, buttonListener);
+        } else {
+            v = minflater.inflate(R.layout.todo_row, parent, false);
+            return new TodoHolder(v, clickListerner);
+        }
+
     }
 
     @Override
-    public void onBindViewHolder(TodoHolder holder, int position) {
-        ToDo todo=mResults.get(position);
-        holder.what.setText(todo.getWhat());
-        String s = "Now";
-        holder.when.setText(s);
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+        if (position < mResults.size()) {
+            ToDo todo = mResults.get(position);
+            TodoHolder todoHolder = (TodoHolder) holder;
+            todoHolder.what.setText(todo.getWhat());
+            String s = "Now";
+            todoHolder.when.setText(s);
+            todoHolder.setBackground(todo.isCompleted());
+        }
     }
 
     @Override
     public int getItemCount() {
-        return mResults.size();
+        if (mResults == null || mResults.size() == 0)
+            return 0;
+        else
+            return mResults.size() + 1;
     }
 
     public void update(RealmResults<ToDo> data) {
-        mResults=data;
+        mResults = data;
+        notifyItemInserted(mResults.size() - 1);
+
+    }
+
+
+    @Override
+    public void onSwipe(int position) {
+
+        mRealm.beginTransaction();
+        mResults.deleteFromRealm(position);
+        mRealm.commitTransaction();
         notifyDataSetChanged();
+    }
+
+    public void onMarked(int position) {
+        if (position < mResults.size()) {
+            mRealm.beginTransaction();
+            mResults.get(position).setCompleted(true);
+            mRealm.commitTransaction();
+            notifyDataSetChanged();
+        }
     }
 }

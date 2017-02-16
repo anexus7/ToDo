@@ -7,4 +7,6 @@
     <color name="btn_purple">#b691ff</color>
     <color name="transparent">#00000000</color>
     <color name="dark_blue">#493884</color>
+    <color name="row_bg_darker">#738e79bb</color>
+    <color name="row_bg_lighter">#f38e79bb</color>
 </resources>

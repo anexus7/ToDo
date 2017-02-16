@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/menu_add"
+        android:icon="@drawable/ic_plus"
+        android:title="@string/menu_add"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/menu_markcomplete"
+        android:title="@string/menu_item_most_time" />
+
+    <item
+        android:id="@+id/menu_markincomplete"
+        android:title="@string/menu_least_time" />
+
+    <item
+        android:id="@+id/menu_complete"
+        android:title="@string/menu_complete" />
+
+    <item
+        android:id="@+id/menu_incomplete"
+        android:title="@string/menu_incomplete" />
+
+</menu>

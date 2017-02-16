@@ -6,4 +6,10 @@
     <string name="dialog_addit_button_text">Add ToDo</string>
     <string name="todo_row_what_text">What</string>
     <string name="todo_row_when_text">When</string>
+    <string name="mark_complete">Mark Complete</string>
+    <string name="menu_item_most_time">Mark Complete</string>
+    <string name="menu_add">ADD</string>
+    <string name="menu_least_time">Mark Incomplete</string>
+    <string name="menu_complete">Complete</string>
+    <string name="menu_incomplete">Menu Incomplete</string>
 </resources>

@@ -1,4 +1,4 @@
-package com.greatapps.jatinthareja.todo;
+package com.greatapps.jatinthareja.todo.Dialogs;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -9,6 +9,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+
+import com.greatapps.jatinthareja.todo.R;
+import com.greatapps.jatinthareja.todo.ToDo;
 
 import io.realm.Realm;
 
@@ -24,7 +27,7 @@ public class Add_Todo_Dialog extends DialogFragment {
         @Override
         public void onClick(View v) {
             int id=v.getId();
-            if (id==R.id.dialog_addit_button){
+            if (id== R.id.dialog_addit_button){
                 add_todo();
 
             }
@@ -38,7 +41,6 @@ public class Add_Todo_Dialog extends DialogFragment {
         String what=what_edittext.getText().toString();
         long time=System.currentTimeMillis();
         ToDo todo=new ToDo(what,time,false);
-        Realm.init(getContext());
         Realm realm=Realm.getDefaultInstance();
         realm.beginTransaction();
         realm.copyToRealm(todo);
